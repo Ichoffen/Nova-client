@@ -2,66 +2,29 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Client</title>
+    <title>AI Chat</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root {
-            --bg-dark: #343541;
-            --sidebar: #202123;
-            --input: #40414F;
-            --text: #ECECF1;
-        }
-        body { margin: 0; background: var(--bg-dark); color: var(--text); font-family: sans-serif; display: flex; height: 100vh; overflow: hidden; }
-        
-        /* Боковая панель */
-        #sidebar { width: 260px; background: var(--sidebar); padding: 10px; display: flex; flex-direction: column; }
-        .new-chat { border: 1px solid #4D4D4F; padding: 10px; border-radius: 5px; cursor: pointer; color: white; background: transparent; display: flex; align-items: center; gap: 10px; }
-        .new-chat:hover { background: #2A2B32; }
-
-        /* Чат */
-        #main { flex: 1; display: flex; flex-direction: column; position: relative; }
-        
-        /* Верхняя панель ключа */
-        #top { padding: 10px; border-bottom: 1px solid #4D4D4F; display: flex; justify-content: space-between; align-items: center; background: var(--bg-dark); }
-        #api-key { background: var(--input); border: none; color: white; padding: 5px; border-radius: 4px; width: 300px; }
-
-        /* Сообщения */
+        body { margin: 0; background: #343541; color: #ECECF1; font-family: sans-serif; display: flex; height: 100vh; overflow: hidden; }
+        #main { flex: 1; display: flex; flex-direction: column; }
+        #top { padding: 15px; border-bottom: 1px solid #4D4D4F; display: flex; gap: 10px; background: #202123; }
+        #api-key { background: #40414F; border: none; color: white; padding: 8px; border-radius: 4px; flex: 1; }
         #messages { flex: 1; overflow-y: auto; padding: 20px; padding-bottom: 100px; }
-        .msg { padding: 20px; display: flex; gap: 15px; border-bottom: 1px solid rgba(0,0,0,0.1); }
+        .msg { padding: 20px; border-bottom: 1px solid rgba(0,0,0,0.1); line-height: 1.6; }
         .msg.ai { background: #444654; }
-        .avatar { width: 30px; height: 30px; border-radius: 2px; display: flex; align-items: center; justify-content: center; }
-        .user .avatar { background: #5436DA; }
-        .ai .avatar { background: #19C37D; }
-
-        /* Ввод */
-        #input-area { position: absolute; bottom: 0; width: 100%; padding: 20px; background: linear-gradient(transparent, var(--bg-dark) 40%); display: flex; justify-content: center; }
-        .box { position: relative; width: 100%; max-width: 768px; }
-        textarea { width: 100%; background: var(--input); border: none; color: white; padding: 12px 40px 12px 15px; border-radius: 12px; resize: none; height: 50px; outline: none; box-sizing: border-box; font-family: inherit; }
-        #send { position: absolute; right: 10px; bottom: 12px; background: none; border: none; color: #8E8EA0; cursor: pointer; }
-        #send:hover { color: white; }
+        #input-area { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(transparent, #343541 30%); text-align: center; }
+        #text { width: 100%; max-width: 800px; background: #40414F; border: 1px solid #303139; color: white; padding: 15px; border-radius: 10px; resize: none; outline: none; }
     </style>
 </head>
 <body>
-    <div id="sidebar">
-        <button class="new-chat" onclick="location.reload()"><i class="fas fa-plus"></i> Новый чат</button>
-    </div>
     <div id="main">
         <div id="top">
-            <b>Claude Client</b>
-            <input type="password" id="api-key" placeholder="Вставь сюда API Key (sk-...)">
+            <span style="align-self:center; font-weight:bold;">Claude Client</span>
+            <input type="password" id="api-key" placeholder="Вставь API Key (sk-ant-...)">
         </div>
-        <div id="messages">
-            <div class="msg ai">
-                <div class="avatar"><i class="fas fa-robot"></i></div>
-                <div>Привет! Я готов к работе.</div>
-            </div>
-        </div>
+        <div id="messages"></div>
         <div id="input-area">
-            <div class="box">
-                <textarea id="text" placeholder="Отправить сообщение..."></textarea>
-                <button id="send"><i class="fas fa-paper-plane"></i></button>
-            </div>
+            <textarea id="text" rows="1" placeholder="Напиши сообщение и нажми Enter..."></textarea>
         </div>
     </div>
     <script src="renderer.js"></script>
