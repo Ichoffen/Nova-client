@@ -1,7 +1,7 @@
 {
   "name": "ai-chat-client",
   "version": "1.0.0",
-  "description": "My AI Chat",
+  "description": "Simple AI Chat",
   "main": "main.js",
   "author": "User",
   "scripts": {
@@ -17,7 +17,7 @@
     "electron-builder": "^24.9.1"
   },
   "build": {
-    "appId": "com.ai.chat",
+    "appId": "com.simple.chat",
     "productName": "AIChat",
     "win": {
       "target": "nsis"
